@@ -4,7 +4,7 @@ preceptron class. (Yes, the function is actually named "loadInputPatterFromFile"
 
 All multi-byte values are little endian.
 
-Coordinates are in the range of 0.0 to 1.0. Origin is currently presumed to me top-left.
+Coordinates are in the range of 0.0 to 1.0. Origin is currently presumed to be top-left.
 
 **FILE**
 
