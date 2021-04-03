@@ -6,6 +6,9 @@ All multi-byte values are little endian.
 
 Coordinates are in the range of 0.0 to 1.0. Origin is currently presumed to be top-left.
 
+As far as I can tell, the game never calls this. It was probably used by development tools
+to load data for training and testing.
+
 **FILE**
 
 | Type    | Count | Decription |
