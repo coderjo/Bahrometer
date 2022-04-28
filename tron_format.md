@@ -59,56 +59,76 @@ These are the names used in a function that takes the id number and gives the na
 
 ##### Forward:
 
+```python
 if x >= 0.5:
 	return 1.0
 else:
 	return 0.0
+```
 
 ##### Backpropagation
 
+```python
 return 0.0
+```
 
 #### Type 1: Piecewise Linear
 
 ##### Forward:
 
+```python
 if x >= 1.0:
 	1.0
 else if x < 0.0:
 	0.0
 else:
 	x
+```
 
 ##### Backpropagation
 
+```python
 return 0.0
+```
 
 #### Type 2: Logistic Sigmoid
 
 ##### Forward:
 
+```python
 return 1.0 / (exp(-x) + 1.0)
+```
 
 ##### Backpropagation
 
+```python
 return (1.0 - x) * x
+```
 
 #### Type 3: Hypertangent Sigmoid
 
 ##### Forward:
 
+```python
 return tanh(x)
+```
 
 ##### Backpropagation
 
+```python
 return 1.0 - tanh(x) * tanh(x)
+```
 
 #### Type 4: Identity
 
 ##### Forward:
 
+```python
 return x
+```
 
 ##### Backpropagation
 
+```python
 return 0.0
+```
