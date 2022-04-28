@@ -78,11 +78,11 @@ return 0.0
 
 ```python
 if x >= 1.0:
-	1.0
+	return 1.0
 else if x < 0.0:
-	0.0
+	return 0.0
 else:
-	x
+	return x
 ```
 
 ##### Backpropagation
