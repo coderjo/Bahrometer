@@ -1,3 +1,5 @@
+# TRON file format
+
 This is a definition of the file format of the .tron files used by the game.
 
 The four .tron files in the game have 256 neurons on the input layer (for a 16x16 pixel input), one hidden layer with
@@ -6,7 +8,7 @@ the output layer neurons have names.
 
 All multi-byte values are little endian.
 
-**FILE**
+## FILE
 
 | Type   | Count | Typical value | Description |
 | :---   | ----: | ------------: | :---------- |
@@ -20,14 +22,14 @@ All multi-byte values are little endian.
 | uint32 |     1 |       | Hidden layer count (nHid) |
 | LAYER  | nHid  |       | Hidden layers |
 
-**LAYER**
+## LAYER
 
 | Type   | Count | Description |
 | :----- | ----: | :---------- |
 | uint32 |     1 | Number of neurons in this layer (nNeu) |
 | NEURON | nNeu  | The data for each neuron of this layer  |
 
-**NEURON**
+## NEURON
 
 | Type   |    Count | Desciption |
 | :----- | -------: | :--------- |
@@ -38,3 +40,75 @@ All multi-byte values are little endian.
 | float  | nWeights | The weights for this neuron.
 
 Note: There is no neuron bias value.
+
+### Neuron smoothing functions
+
+These are the names used in a function that takes the id number and gives the name as a string.
+
+| ID | Internal name        |
+| -: | :------------------- |
+| 0  | Step                 |
+| 1  | Piecewise Linear     |
+| 2  | Logistic Sigmoid     |
+| 3  | Hypertangent Sigmoid |
+| 4  | Identity             |
+| -1 | "Invalid"            |
+| xx | "Unknown"            |
+
+#### Type 0: Step
+
+##### Forward:
+
+if x >= 0.5:
+	return 1.0
+else:
+	return 0.0
+
+##### Backpropagation
+
+return 0.0
+
+#### Type 1: Piecewise Linear
+
+##### Forward:
+
+if x >= 1.0:
+	1.0
+else if x < 0.0:
+	0.0
+else:
+	x
+
+##### Backpropagation
+
+return 0.0
+
+#### Type 2: Logistic Sigmoid
+
+##### Forward:
+
+return 1.0 / (exp(-x) + 1.0)
+
+##### Backpropagation
+
+return (1.0 - x) * x
+
+#### Type 3: Hypertangent Sigmoid
+
+##### Forward:
+
+return tanh(x)
+
+##### Backpropagation
+
+return 1.0 - tanh(x) * tanh(x)
+
+#### Type 4: Identity
+
+##### Forward:
+
+return x
+
+##### Backpropagation
+
+return 0.0
