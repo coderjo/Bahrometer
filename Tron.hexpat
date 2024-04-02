@@ -1,7 +1,16 @@
+enum SmoothFunc : u8 {
+    Step = 0,
+    PiecewiseLinear = 1,
+    LogisticSigmoid = 2,
+    HypertangentSigmoid = 3,
+    Identity = 4,
+    invalid = 0xff
+};
+
 struct Neuron {
     u16 NameLen;
     char Name[NameLen];
-    u8 SnoothFunc;
+    SmoothFunc Smoothing;
     u32 nWeights;
     float Weights[nWeights];
 };
