@@ -1,3 +1,6 @@
+#pragma description Myst V .tron file format
+#pragma endian little
+
 enum SmoothFunc : u8 {
     Step = 0,
     PiecewiseLinear = 1,
